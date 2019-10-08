@@ -1,0 +1,3 @@
+module programacionAvanzada {
+	requires junit;
+}
