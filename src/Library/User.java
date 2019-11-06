@@ -1,4 +1,4 @@
-package Practicas;
+package Library;
 
 public class User {
 	

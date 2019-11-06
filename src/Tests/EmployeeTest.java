@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Practicas.Employee;
-import Practicas.Librarian;
-import Practicas.User;
+import Library.Employee;
+import Library.Librarian;
+import Library.User;
 
 public class EmployeeTest {
 

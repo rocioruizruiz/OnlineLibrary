@@ -1,4 +1,4 @@
-package Practicas;
+package Library;
 import java.util.*;
 import java.io.*;
 
@@ -20,7 +20,7 @@ public class Biblioteca {
 	private List<Movements> movements;
 	private List<User> users;
 	private List<Employee> employees;
-	public int stock;
+	public int totalstock;
 	
 	
 //------------ Movements Methods --------------------
@@ -101,7 +101,7 @@ public class Biblioteca {
         BufferedReader br = null;
         String line = ""; 
         String cvsSplitBy = ";";
-        String isbn, title, author;
+        String isbn, title, author, stock;
 
         try {
 
@@ -110,22 +110,24 @@ public class Biblioteca {
 
                 // use dot-comma as separator
                 String[] booksfile = line.split(cvsSplitBy);
-                System.out.println(booksfile);
+                //System.out.println(booksfile);
                 
                 isbn = booksfile[0];
                 title = booksfile[1];
                 author = booksfile[2];
+                stock = booksfile[3];
                 
                 System.out.println(isbn + ", " + title + ", " + author);
                 
-                Book e = new Book(isbn, title, author);
-                System.out.println("------" + e.getIsbn());
-                allBooks.add(e); 
-                stock++;
+                int stocky = Integer.parseInt(stock);
                 
-
+                Book e = new Book(isbn, title, author, stocky);
+                //Contador c = new Contador(e, stocky);
+                System.out.println("\n-----------------------\n");
+                allBooks.add(e); 
+                totalstock++;
             }
-
+            
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -153,7 +155,7 @@ public class Biblioteca {
 
                 // use comma as separator
                 String[] usersfile = line2.split(cvsSplitBy2);
-                System.out.println(usersfile);
+                //System.out.println(usersfile);
                 
                 id = usersfile[0];
                 firstName = usersfile[1];
@@ -163,6 +165,7 @@ public class Biblioteca {
                 c = usersfile[5];
                 booksBook = usersfile[6];
                 System.out.println(id + "; " + ag + "; " + c + "; " + booksBook + ";" );
+                System.out.println("\n----------------------------\n");
                 int age = Integer.parseInt(ag); 
                 long cp = Long.parseLong(c);
                 int booksBooked = Integer.parseInt(booksBook);
@@ -199,7 +202,7 @@ public class Biblioteca {
 
                 // use dot-comma as separator
                 String[] employeesfile = line3.split(cvsSplitBy3);
-                System.out.println(employeesfile);
+                //System.out.println(employeesfile);
                 
                 employeeType = employeesfile[0];
                 employeeNIF = employeesfile[1];
@@ -208,7 +211,15 @@ public class Biblioteca {
                 employeeHireYear = employeesfile[4];
                 employeeRetribution = employeesfile[5];
                 
-                System.out.println(employeeType + ", " + employeeNIF + ", " + employeeHireYear + ", " + employeeRetribution);
+                String a = "";
+                if (employeeType.equals("1")){
+                	a = "Ingeniero";
+                }else if(employeeType.equals("2")) {
+                	a = "Contable";
+                }
+                
+                System.out.println(a + ", " + employeeNIF + ", " + employeeHireYear + ", " + employeeRetribution);
+                System.out.println("\n-----------------------------------\n");
                 int employeeType_ = Integer.parseInt(employeeType);
                 int employeeHireyear = Integer.parseInt(employeeHireYear);
                 double employeeRetribution_ = Double.parseDouble(employeeRetribution);

@@ -1,4 +1,5 @@
-package Practicas;
+
+package Library;
 
 import java.util.Scanner;
 import java.util.*;
@@ -34,15 +35,43 @@ public class Main {
     	Scanner sn = new Scanner(System.in);
     	Scanner num = new Scanner(System.in);
     	//String cin;
-    	
+    	int op;
     	int option = 1;
-         
-    	while(option != 0) {
-    		String op;
+        System.out.println(messages.getString("chooseMenu"));
+        op = num.nextInt();
+        if(op == 1) {
+        	int choosen;
+        	messages.getString("menuEmployees");
+        	choosen = num.nextInt();
+        	switch(choosen) {
+        		case 1:
+        			//funciones de librero
+        			int a; 
+        			messages.getString("");
+        			a = num.nextInt();
+        			if(a == 1){
+        				
+        			}else if(a == 2){
+        				
+        			}
+        				
+        			break;
+        		case 2:
+        			//funciones de contable
+        				
+        			break;
+        	}
+        	
+        }
+        else if(op == 2) {
+        	while(option != 0) {
+        
     		System.out.println(messages.getString("menu1"));
     		//op = sn.nextLine();
     		//option = Integer.parseInt(op);
     		option = num.nextInt();
+    		
+    		
     		switch(option) {
     			
 				case 1:
@@ -75,8 +104,8 @@ public class Main {
 								 
 								 biblio.newMovement(thisUser, theIsbnBook, true);
 								 							 
-								 System.out.println(messages.getString("alreadyBooked"));
-								 biblio.stock--;
+								 System.out.println(messages.getString("bookBooked"));
+								 biblio.totalstock--;
 							 }
 						 
 					 }else if(opcion == 2) { 
@@ -99,7 +128,7 @@ public class Main {
 							 biblio.newMovement(thisUser, theIsbnBook, false);
 							 							 
 							 System.out.println(messages.getString("bookReturned"));
-							 biblio.stock++;
+							 biblio.totalstock++;
 						}
 					}	 
 				}
@@ -129,7 +158,7 @@ public class Main {
 								 biblio.newMovement(thisUser, theTitleBook, true);
 								 							 
 								 System.out.println(messages.getString("bookBooked"));
-								 biblio.stock--;
+								 biblio.totalstock--;
 							 }
 						 }else if(opcion == 2) { //2. Return this book to the library
 							 if(theTitleBook.getOcupacy() == false) {
@@ -148,7 +177,7 @@ public class Main {
 								 biblio.newMovement(thisUser, theTitleBook, false);
 							 
 								 System.out.println(messages.getString("bookReturned"));
-								 biblio.stock++;
+								 biblio.totalstock++;
 							 }
 						 }
 					 }	 
@@ -203,10 +232,10 @@ public class Main {
 					 //Exit
 					 option = 0;
 					 break;
-			}
-    	
-    	}
-    }
+				}
+        	}
+        }
+	}
 }
 
 
