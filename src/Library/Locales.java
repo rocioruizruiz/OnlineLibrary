@@ -1,4 +1,4 @@
-package Library;
+package library;
 
 import java.util.Locale;
 import javax.swing.JOptionPane;
@@ -7,19 +7,27 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-public class Internationalitation {
-	static Scanner sn = new Scanner(System.in);
+public class Locales {
+	
     private static Locale locale;
     static Locale spLocale = new Locale("sp", "ES");
     static Locale enLocale = new Locale("en", "US");
     static Locale frLocale = new Locale("fr", "FR");
-
-    public static String getString() {
+    
+    public Locales(Locale thisLocale) {
+    	Locales.locale = thisLocale;
+    }
+    public static Locale getLocale() {
+		return locale;
+	}
+	public static String getString() {
+    Scanner sn = new Scanner(System.in);
 	String cin = sn.nextLine();
     	return cin;
     }
     public static int getInt() {
-    	int cin = sn.nextInt();
+    	Scanner num = new Scanner(System.in);
+    	int cin = num.nextInt();
         return cin;
     }
     
@@ -27,19 +35,19 @@ public class Internationalitation {
     	//System.out.println("Choose your lenguage:\n 1. En_US.\n 2. Sp_ES\n 3. Fr_FR");
 		// user choice
     	//String option = getString();
-    	System.out.println("Choose your lenguage:\n 1. English.\n 2. Spanish\n 3. French");
-    	int option = sn.nextInt();
+    	System.out.println("Choose your lenguage:\n 1. English \n 2. Spanish\n 3. French");
+    	int option = getInt();
     	switch(option) {
     		case 1:
-    			locale = Internationalitation.enLocale;
+    			locale = Locales.enLocale;
     			break;
     		case 2:
-    			locale = Internationalitation.spLocale;
+    			locale = Locales.spLocale;
     			break;
     		case 3:
-    			locale = Internationalitation.frLocale;
+    			locale = Locales.frLocale;
     		default:
-    			locale = Internationalitation.enLocale;
+    			locale = Locales.enLocale;
     	}  
     	return locale;
     }

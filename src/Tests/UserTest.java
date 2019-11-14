@@ -1,9 +1,9 @@
-package Tests;
+package tests;
 
 import static org.junit.Assert.*;
-import org.junit.Test;
 
-import Library.User;
+import org.junit.Test;
+import library.User;
 
 public class UserTest {
 

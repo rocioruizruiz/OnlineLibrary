@@ -1,16 +1,17 @@
-package Library;
+package library;
 import java.util.*;
 import java.io.*;
+import java.sql.*;
 
 
-public class Biblioteca {
+public class Biblioteca implements SearchBy{
 	
 	public Biblioteca(String name) {
 		this.name = name;
-		allBooks = new ArrayList<Book>();
-		movements = new ArrayList<Movements>();
-		users = new ArrayList<User>();
-		employees = new ArrayList<Employee>();
+		this.allBooks = new ArrayList<Book>();
+		this.movements = new ArrayList<Movements>();
+		this.users = new ArrayList<User>();
+		this.employees = new ArrayList<Employee>();
 	}
 	public Biblioteca() {}
 	
@@ -50,7 +51,7 @@ public class Biblioteca {
 	
 //--------------- Books Methods -------------------------
 	
-	Book searchByIsbn(String anIsbn) {
+	public Book searchByIsbn(String anIsbn) {
 		for(Book b: allBooks) {
 			if(b.getIsbn().equals(anIsbn)) {
 				System.out.println("El libro con ese isbn es: " + b.getTitle());
@@ -60,7 +61,7 @@ public class Biblioteca {
 		System.out.println("No lo he encontrado!");
 		return null;
 	}
-	Book searchByTitle(String anTitle) {
+	public Book searchByTitle(String anTitle) {
 		for(Book b: allBooks) {
 			if(b.getTitle().equals(anTitle)) {
 			System.out.println("El libro con ese titulo es de " + b.getAuthor() + " y tiene como isbn: " + b.getIsbn());
@@ -73,9 +74,16 @@ public class Biblioteca {
 	
 // ----------------- USER Methods ------------------------
 	
-	User searchById(String anId) {
+	public User searchById(String anId) {
 		for(User u: users) {
 			if(u.getId().equals(anId))
+				return u;
+		}
+		return null;
+	}
+	public User searchByName(String aName) {
+		for(User u: users) {
+			if(u.getFirstName().equals(aName))
 				return u;
 		}
 		return null;
@@ -96,6 +104,55 @@ public class Biblioteca {
 		//====================== READ FILES =====================//
 		//======================            =====================//
 	
+	void readBooksFromDataBase() {
+		/*
+		Database db = new Database();
+        try {
+            db.connect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        db.close();
+        */
+		
+		try
+	    {
+		      // create our mysql database connection
+		      String myDriver = "com.mysql.jdbc.Driver"; //com.mysql.jdbc.Driver
+		      String myUrl = "jdbc:mysql://localhost:3306/workbenchtesting?autoReconnect=true&useSSL=false";
+		      
+		
+		      Class.forName(myDriver);
+		      Connection conn = DriverManager.getConnection(myUrl, "root", "flipacolega");
+		      
+		      
+		      // our SQL SELECT query. 
+		      // if you only need a few columns, specify them by name instead of using "*"
+		      String query = "SELECT * FROM libros";
+	
+		      // create the java statement
+		      Statement st = conn.createStatement();
+		      
+		      // execute the query, and get a java resultset
+		      ResultSet rs = st.executeQuery(query);
+		      
+		      // iterate through the java resultset
+		      while (rs.next()){
+		    	  String isbn = rs.getString("45678H");
+		    	  String title = rs.getString("Titulo0");
+		    	  String author = rs.getString("Autor0");
+		    	  int stock = rs.getInt("1");
+		        
+		    	  // print the results
+		    	  System.out.format("%s, %s, %s, %s\n", isbn, title, author, stock);
+		      }
+		      st.close();
+	      }catch (Exception e){
+		      System.err.println("Got an exception! ");
+		      System.err.println(e.getMessage());
+	      }
+	}
+	
 	void readBooksFile() {
 		String csvFile = "/Users/rocioruizruiz/Documentos/Segundo/AmpliacionProgramacion/WorkspaceJava/PracticasProgramacion/Libros.csv";
         BufferedReader br = null;
@@ -110,7 +167,6 @@ public class Biblioteca {
 
                 // use dot-comma as separator
                 String[] booksfile = line.split(cvsSplitBy);
-                //System.out.println(booksfile);
                 
                 isbn = booksfile[0];
                 title = booksfile[1];
@@ -122,7 +178,6 @@ public class Biblioteca {
                 int stocky = Integer.parseInt(stock);
                 
                 Book e = new Book(isbn, title, author, stocky);
-                //Contador c = new Contador(e, stocky);
                 System.out.println("\n-----------------------\n");
                 allBooks.add(e); 
                 totalstock++;
@@ -155,7 +210,6 @@ public class Biblioteca {
 
                 // use comma as separator
                 String[] usersfile = line2.split(cvsSplitBy2);
-                //System.out.println(usersfile);
                 
                 id = usersfile[0];
                 firstName = usersfile[1];
@@ -202,7 +256,6 @@ public class Biblioteca {
 
                 // use dot-comma as separator
                 String[] employeesfile = line3.split(cvsSplitBy3);
-                //System.out.println(employeesfile);
                 
                 employeeType = employeesfile[0];
                 employeeNIF = employeesfile[1];

@@ -1,12 +1,11 @@
-package Tests;
+package tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Library.Employee;
-import Library.Librarian;
-import Library.User;
+import library.Employee;
+import library.Librarian;
 
 public class EmployeeTest {
 

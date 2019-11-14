@@ -1,16 +1,15 @@
-package Tests;
+package tests;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
-import Library.Book;
+import library.Book;
 
 
 public class BookTest {
 
 	@Test
-	public void testGetIsbn() {
+	public void test() {
 		Book libro = new Book("34567h","titulo","autor", 2);
 		assertEquals("34567h", libro.getIsbn());
 		assertEquals("titulo", libro.getTitle());
@@ -24,6 +23,8 @@ public class BookTest {
 		libro.setBookedStatus(false);
 		libro.setBookedStatus(false);
 		assertEquals(2, libro.getStock());
+		
+		
 		
 		
 	}
