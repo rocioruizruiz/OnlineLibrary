@@ -1,7 +1,6 @@
 
 package library;
 
-import java.util.Scanner;
 import java.util.*;
 
 
@@ -18,14 +17,14 @@ public class Main {
 
 		try{
 			
-			
 			Biblioteca biblio = new Biblioteca("Nebrix");
 			
 			//-------------- READING FILES
-			biblio.readBooksFromDataBase();
+			biblio.readBooksFile();
 	    	biblio.readUsersFile();
 	    	biblio.readEmployeesFile();
 		
+	    	
 	    	//-------------- INTERNATIONALITATION
 	    	Locale currentLocale = Locales.setLocale();
 	    	ResourceBundle messages;
@@ -56,6 +55,14 @@ public class Main {
 	        	int choosen = 0;
 	        	System.out.println(messages.getString("menuEmployees"));
 	        	choosen = num.nextInt();
+	        	if(choosen == 1) {
+	        		
+	        	}else if(choosen == 2) {
+	        		
+	        	}else if(choosen == 3) {
+	        		Employee e = new Contable("sdfghjk7","pepo", "ruiz", 4567, 5678);
+	        		HumanResources.hireEmployee(e);
+	        	}
 
 	        	switch(choosen) {
 	        		case 1:
@@ -136,6 +143,9 @@ public class Main {
 								 System.out.println(messages.getString("id"));
 								 id = sn.nextLine();
 								 User thisUser = biblio.searchById(id);
+								 if (thisUser == null) {
+									 throw new MyException();
+								 }
 									 
 								 biblio.newMovement(thisUser, theIsbnBook, false);
 								 							 
@@ -165,6 +175,7 @@ public class Main {
 										 
 									 System.out.println(messages.getString("id"));
 									 id = sn.nextLine();
+									 
 									 User thisUser = biblio.searchById(id);
 										 
 									 biblio.newMovement(thisUser, theTitleBook, true);
@@ -239,7 +250,17 @@ public class Main {
 						 break;
 						 
 					 case 5:
+						 
 						 biblio.printMovements();
+						 
+						 Table table = new Table();
+					    	List<Book> boo = biblio.getAllBooks();
+					    	System.out.println(boo.size());
+					    	
+					    	table.create_table(biblio.getAllBooks());
+					    	table.cuantityOrder();
+					    	
+						 
 						 
 						 break;
 					 default:
@@ -252,9 +273,9 @@ public class Main {
 	        
         }catch(MyException e){
             System.out.println(e.rango());
-        }
-	}	
-	
+            System.out.println(e.incompatible("Invalid"));
+	}
+	}
 }
 
 

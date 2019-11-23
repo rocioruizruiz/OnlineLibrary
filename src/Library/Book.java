@@ -6,6 +6,7 @@ public class Book {
 	private boolean booked;
 	public int stock;
 	private int maxStock;
+	private int nUses;
 	
 	public Book(String isbn, String title, String author, int stock) {
 		this.isbn = isbn;
@@ -14,6 +15,7 @@ public class Book {
 		this.booked = false;
 		this.stock = stock;
 		this.maxStock = stock;
+		this.nUses = 0;
 	}
 	public Book() {};
 
@@ -22,6 +24,10 @@ public class Book {
 		this.title = title;
 		this.author = author;
 		this.booked = booked;
+	}
+	
+	public int getUses() {
+		return this.nUses;
 	}
 	
 	public int getStock() {
@@ -49,6 +55,7 @@ public class Book {
 				//lo alquila
 				this.booked = false;
 				stock = stock - 1;
+				this.nUses = nUses + 1;
 			}else{	
 				//lo devuelve
 				if(stock == (this.maxStock - 1)) {
@@ -64,6 +71,7 @@ public class Book {
 				// lo alquila y no hay mas
 				stock = stock - 1;
 				this.booked = bookedd;
+				this.nUses = nUses + 1;
 			}else {
 				//lo devuelve
 				if(stock == (this.maxStock - 1)) {

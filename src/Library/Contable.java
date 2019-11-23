@@ -10,10 +10,10 @@ public class Contable extends Employee {
 	public double getSalaryIncrease() {
 		double currentSalary =  super.getRetribution();
 		if(super.getAntiquity() >= 5) {
-			return (currentSalary*1.5/100);
+			return Math.abs((currentSalary*1.5/100));
 		}
 		else {
-			return (currentSalary * 0.015);
+			return Math.abs((currentSalary * 0.015));
 		}
 	}
 	public String getData() {

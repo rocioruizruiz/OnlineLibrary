@@ -12,4 +12,8 @@ public class MyException extends Exception {
     public String rango() throws MyException{
            return messages.getString("IncorrectRange");
     }
+    
+    public String incompatible(String as) throws MyException{
+        return messages.getString("Incompatible String");
+ }
 }

@@ -14,10 +14,10 @@ public class Librarian extends Employee {
 
 		double currentSalary =  super.getRetribution();
 		if(super.getAntiquity() >= 5) {
-			return (currentSalary*2/100);
+			return Math.abs((currentSalary*2/100));
 		}
 		else {
-			return (currentSalary * 0.015);
+			return Math.abs((currentSalary * 0.015));
 		}
 	}
 	public String getData() {

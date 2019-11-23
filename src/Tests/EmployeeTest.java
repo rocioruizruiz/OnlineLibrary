@@ -22,9 +22,6 @@ public class EmployeeTest {
 		assertEquals("Ruiz", u.getSurname());
 		assertEquals(2014, u.getHiredYear());
 		assertEquals(5, u.getAntiquity());
-		//assertEquals(400, u.getSalaryIncrease());
-		
-		
+		//assertEquals(400, u.getSalaryIncrease());	
 	}
-
 }

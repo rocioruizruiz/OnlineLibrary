@@ -22,6 +22,8 @@ public class Biblioteca implements SearchBy{
 	private List<User> users;
 	private List<Employee> employees;
 	public int totalstock;
+	private Table table;
+	
 	
 	
 //------------ Movements Methods --------------------
@@ -37,6 +39,10 @@ public class Biblioteca implements SearchBy{
 			m.getDatos();
 		}
 	}
+	
+
+	
+	
 	
 //------------ Employees Methods -----------------------
 	
@@ -70,6 +76,15 @@ public class Biblioteca implements SearchBy{
 		}
 		System.out.println("No lo he encontrado!");
 		return null;
+	}
+	
+	public List<Book> getAllBooks() {
+		return this.allBooks;
+	}
+	
+	public static Book getBook(int i) {
+		return allBooks.get(i);
+		
 	}
 	
 // ----------------- USER Methods ------------------------
