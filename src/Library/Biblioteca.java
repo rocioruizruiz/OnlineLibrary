@@ -1,20 +1,12 @@
 package library;
 import java.util.*;
+import library.User.UserBuilder;
+
 import java.io.*;
 import java.sql.*;
 
 
 public class Biblioteca implements SearchBy{
-	
-	public Biblioteca(String name) {
-		this.name = name;
-		this.allBooks = new ArrayList<Book>();
-		this.movements = new ArrayList<Movements>();
-		this.users = new ArrayList<User>();
-		this.employees = new ArrayList<Employee>();
-	}
-	public Biblioteca() {}
-	
 	
 	private String name;
 	private static List<Book> allBooks;
@@ -23,7 +15,31 @@ public class Biblioteca implements SearchBy{
 	private List<Employee> employees;
 	public int totalstock;
 	private Table table;
+	private Account cuenta;
+	private static ResourceBundle messages;
 	
+	public Biblioteca(String name) {
+		this.name = name;
+		this.allBooks = new ArrayList<Book>();
+		this.movements = new ArrayList<Movements>();
+		this.users = new ArrayList<User>();
+		this.employees = new ArrayList<Employee>();
+
+	}
+	
+	public Biblioteca() {}
+	
+	public void setLocale(ResourceBundle m){
+		this.messages = m;
+	}
+	
+	public static ResourceBundle getLocale() {
+		return messages;
+	}
+	
+	
+	
+
 	
 	
 //------------ Movements Methods --------------------
@@ -39,9 +55,6 @@ public class Biblioteca implements SearchBy{
 			m.getDatos();
 		}
 	}
-	
-
-	
 	
 	
 //------------ Employees Methods -----------------------
@@ -60,21 +73,21 @@ public class Biblioteca implements SearchBy{
 	public Book searchByIsbn(String anIsbn) {
 		for(Book b: allBooks) {
 			if(b.getIsbn().equals(anIsbn)) {
-				System.out.println("El libro con ese isbn es: " + b.getTitle());
+				System.out.println(messages.getString("thisBook") + b.getTitle());
 				return b;
 			}
 		}
-		System.out.println("No lo he encontrado!");
+		System.out.println(messages.getString("notFound"));
 		return null;
 	}
 	public Book searchByTitle(String anTitle) {
 		for(Book b: allBooks) {
 			if(b.getTitle().equals(anTitle)) {
-			System.out.println("El libro con ese titulo es de " + b.getAuthor() + " y tiene como isbn: " + b.getIsbn());
+			System.out.println(messages.getString("thisBook") + b.getAuthor() + ", " + messages.getString("isbn") + b.getIsbn());
 				return b;
 			}
 		}
-		System.out.println("No lo he encontrado!");
+		System.out.println(messages.getString("notFound"));
 		return null;
 	}
 	
@@ -84,7 +97,10 @@ public class Biblioteca implements SearchBy{
 	
 	public static Book getBook(int i) {
 		return allBooks.get(i);
-		
+	}
+	
+	public void addBook(Book e) {
+		allBooks.add(e);
 	}
 	
 // ----------------- USER Methods ------------------------
@@ -111,7 +127,8 @@ public class Biblioteca implements SearchBy{
 		users.remove(e);
 	}
 	void addUser(String id, String firstName, String lastName, String gender, int age, long cp, int booksBooked) {
-		User e = new User(id, firstName, lastName, gender, age, cp, booksBooked);
+		User e = new UserBuilder(id, firstName, lastName, gender).setAge(age).setCp(cp).build();
+				
 		users.add(e);
 	}
 	
@@ -120,16 +137,6 @@ public class Biblioteca implements SearchBy{
 		//======================            =====================//
 	
 	void readBooksFromDataBase() {
-		/*
-		Database db = new Database();
-        try {
-            db.connect();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        db.close();
-        */
-		
 		try
 	    {
 		      // create our mysql database connection

@@ -3,10 +3,12 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class MyException extends Exception {
-	ResourceBundle messages = ResourceBundle.getBundle("MessagesBundle", Locales.getLocale());
+	private static ResourceBundle messages;
 	
 	
-    public MyException(String msg) {}
+    public MyException(String msg) {
+    	messages = Biblioteca.getLocale();
+    }
     public MyException() {}
     
     public String rango() throws MyException{
@@ -14,6 +16,6 @@ public class MyException extends Exception {
     }
     
     public String incompatible(String as) throws MyException{
-        return messages.getString("Incompatible String");
+        return messages.getString("IncompatibleString");
  }
 }

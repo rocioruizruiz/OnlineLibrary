@@ -32,9 +32,7 @@ public class Locales {
     }
     
     public static Locale setLocale() {
-    	//System.out.println("Choose your lenguage:\n 1. En_US.\n 2. Sp_ES\n 3. Fr_FR");
-		// user choice
-    	//String option = getString();
+    	
     	System.out.println("Choose your lenguage:\n 1. English \n 2. Spanish\n 3. French");
     	int option = getInt();
     	switch(option) {

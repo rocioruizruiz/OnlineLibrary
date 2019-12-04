@@ -1,10 +1,10 @@
 package library;
 
-import java.util.Calendar;
 import java.util.*;
 import java.math.*;
 
-public abstract class Employee {
+public abstract class Employee implements EmployeeId{
+	
 	private String nif;
 	private String name;
 	private String surname;
@@ -12,6 +12,8 @@ public abstract class Employee {
 	private double retribution;
 	private static String password = "empl9";
 	private static List<Employee> employees;
+	private  static ResourceBundle messages;
+	
 	public Employee(String nif, String name, String surname, int hiredyear, double retribution) {
 		this.name = name;
 		this.nif = nif;
@@ -19,7 +21,11 @@ public abstract class Employee {
 		this.hiredyear = hiredyear;
 		this.retribution = retribution;
 		this.employees = new ArrayList<Employee>();
+		messages = Biblioteca.getLocale();
 	}
+	public Employee() {
+		messages = Biblioteca.getLocale();
+	};
 	
 	public String getNIF() {
 		return nif;
@@ -57,6 +63,10 @@ public abstract class Employee {
 	}
 	public static void addEmployee(Employee e) {
 		employees.add(e);
+	}
+	
+	public List<Employee> getEmployees(){
+		return this.employees;
 	}
 }
 

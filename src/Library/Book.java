@@ -1,5 +1,7 @@
 package library;
 
+import java.util.ResourceBundle;
+
 public class Book {
 	
 	private String title, isbn, author;
@@ -7,6 +9,7 @@ public class Book {
 	public int stock;
 	private int maxStock;
 	private int nUses;
+	private static ResourceBundle messages;
 	
 	public Book(String isbn, String title, String author, int stock) {
 		this.isbn = isbn;
@@ -16,7 +19,9 @@ public class Book {
 		this.stock = stock;
 		this.maxStock = stock;
 		this.nUses = 0;
+		messages = Biblioteca.getLocale();
 	}
+	
 	public Book() {};
 
 	public Book(String isbn, String title, String author, boolean booked) {
@@ -58,27 +63,27 @@ public class Book {
 				this.nUses = nUses + 1;
 			}else{	
 				//lo devuelve
-				if(stock == (this.maxStock - 1)) {
+				if(stock == (this.maxStock - 1)) { //lo devuelve y es el max stock posible
 					this.booked = bookedd;
 					stock = stock + 1;
-					System.out.println("All stock of this book is now available.");
 				}else {
 					this.booked = false;
 				}
 			}
 		}else if(stock <= 1){
 			if(bookedd == true){
-				// lo alquila y no hay mas
+				// lo alquila y ES EL ULTIMO
 				stock = stock - 1;
 				this.booked = bookedd;
-				this.nUses = nUses + 1;
+				this.nUses = nUses + 1; 
+				//stock = 0;
+				
 			}else {
 				//lo devuelve
 				if(stock == (this.maxStock - 1)) {
 					// si va a alcanzar el maximo stock
 					this.booked = bookedd;
 					stock = stock + 1;
-					System.out.println("All stock of this book is now available.");
 				}else {
 					this.booked = true;
 					stock = stock + 1;

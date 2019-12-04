@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import library.Contable;
 import library.Employee;
+import library.HumanResources;
 import library.Librarian;
 
 public class EmployeeTest {
@@ -22,6 +24,14 @@ public class EmployeeTest {
 		assertEquals("Ruiz", u.getSurname());
 		assertEquals(2014, u.getHiredYear());
 		assertEquals(5, u.getAntiquity());
-		//assertEquals(400, u.getSalaryIncrease());	
+		Employee e = new Contable("sdfghjk7","pepo", "ruiz", 2014, 20000);
+		assertEquals("sdfghjk7", e.getNIF());
+		assertEquals("pepo", e.getName());
+		assertEquals("ruiz", e.getSurname());
+		assertEquals(2014, e.getHiredYear());
+		assertEquals(5, e.getAntiquity());
+		
+		
+		assertEquals(400, (int) u.getSalaryIncrease());	
 	}
 }
