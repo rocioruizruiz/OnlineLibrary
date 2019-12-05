@@ -9,26 +9,33 @@
                         2. Search a book by its title
                         3. Register a new user
                         4. Search user by ID
-                        5. Library register (show all the movements made by users, and predict the return date of the books booked)
-                        6. Table and order table (this function is thought to future statistics. It give you each book bokeed in order of its number of uses.)
+                        5. Library register (show all the movements made by users, and predict the return
+                                date of the books booked)
+                        6. Table and order table (this function is thought to future statistics. 
+                                It give you each book bokeed in order of its number of uses.)
                         0. Exit
  ####                       
         2. Employee:
             Is a private area for employees to manage their own data, such as  their salary. And to work.
-                1. Librarian
-                        The person in charge of demanding the necessary stock of each book, and leave the contable pending to pay.
+               1. Librarian
+                        The person in charge of demanding the necessary stock of each book, 
+                        and leave the contable pending to pay.
+                        
                2. Contable
-                        The person in charge of paying the librarian's demands and also in charge of depositing money tu the library account.
-                        This functions are executed paralelly using Threads.z
+                        The person in charge of paying the librarian's demands and also in charge of 
+                        depositing money to the library account.
+                        This functions are executed paralelly using Threads.
+                        
                3. Human Resources
-                        The person in charge of hiring the necessary employees: librarians, contables or human resources'.
+                        The person in charge of hiring the necessary employees: 
+                                librarians, contables or human resources'.
 
 
 
 ## Highlight of this program
 
-####            -  Heritages: 
-####                I have implemented a heritage of employees to manage their retribution/salary increase depending on their antiquity on the library and their salary.
+####		-  Heritages: 
+####			I have implemented a heritage of employees to manage their retribution/salary increase depending on their antiquity on the library and their salary.
 ####                
 ####           - Interfaces: 
 ####                I have implemented four interfaces. 
