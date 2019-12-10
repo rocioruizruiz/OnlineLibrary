@@ -34,24 +34,24 @@
 
 # Highlight of this program
 
-##		-  Heritages: 
+##		  Heritages: 
 ####			I have implemented a heritage of employees to manage their retribution/salary increase depending on their antiquity on the library and their salary.
 ####                
-##           - Interfaces: 
+##            Interfaces: 
 ####                I have implemented four interfaces. 
 ####                   1. An interface for searches.
 ####                   2. An interface for each employeeID
 ####                   3. An interface for employee' s work functions;
 ####                   4. An interface for setting up tables.
 ####                    
-##            - Tests:
+##             Tests:
 ####                 I have implemented several tests, which i found very useful for making quicker the error detection, and for checking the entire correctly functioning.
 ####                 You can find test of almost every class, including interfaces and heritages mentioned before, and also internationalization, threads, synchronitation, etc...
 ####                
-##            - Exceptions:
+##             Exceptions:
 ####                 I have implemented my own exceptions class. It throws exceptions for range and incompatibility error.
 ####                
-##          - Data Base:
+##           Data Base:
 ####                It is connected to a database with 3 tables: books, users and employees.
 ####                It read the data from csv's. I used MySQL and MySQL Workbench.
      
